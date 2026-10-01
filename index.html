@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StayEase | Hotel Booking Platform</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">Stay<span>Ease</span></div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#hotels">Hotels</a>
+      <a href="#features">Features</a>
+      <a href="#admin">Admin</a>
+    </nav>
+    <button class="login-btn" onclick="openLogin()">Login</button>
+  </header>
+
+  <main>
+    <!-- HERO / SEARCH -->
+    <section id="home" class="hero">
+      <div class="hero-overlay">
+        <p class="eyebrow">TRAVEL • RELAX • REPEAT</p>
+        <h1>Find a place you'll<br><span>love to stay.</span></h1>
+        <p class="hero-text">
+          Search, compare and book comfortable hotels with simple filters
+          and a smooth booking experience.
+        </p>
+
+        <form class="search-box" id="searchForm">
+          <div class="field">
+            <label>Destination</label>
+            <input id="destination" type="text" placeholder="e.g. Hyderabad">
+          </div>
+          <div class="field">
+            <label>Check-in</label>
+            <input id="checkIn" type="date">
+          </div>
+          <div class="field">
+            <label>Check-out</label>
+            <input id="checkOut" type="date">
+          </div>
+          <div class="field">
+            <label>Guests</label>
+            <select id="guests">
+              <option value="1">1 Guest</option>
+              <option value="2" selected>2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5">5+ Guests</option>
+            </select>
+          </div>
+          <button class="search-btn" type="submit">Search Hotels</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- HOTEL SEARCH RESULTS -->
+    <section id="hotels" class="content-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">DISCOVER YOUR STAY</p>
+          <h2>Available Hotels</h2>
+        </div>
+        <span id="resultCount" class="result-count">6 hotels</span>
+      </div>
+
+      <div class="booking-layout">
+        <aside class="filters">
+          <h3>Filter Results</h3>
+
+          <label for="locationFilter">Location</label>
+          <select id="locationFilter">
+            <option value="all">All locations</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Vijayawada">Vijayawada</option>
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Goa">Goa</option>
+          </select>
+
+          <label for="priceFilter">Maximum price: <b>₹<span id="priceValue">10000</span></b></label>
+          <input id="priceFilter" type="range" min="1000" max="10000" step="500" value="10000">
+
+          <label for="ratingFilter">Minimum rating</label>
+          <select id="ratingFilter">
+            <option value="0">Any rating</option>
+            <option value="4">4.0+</option>
+            <option value="4.5">4.5+</option>
+          </select>
+
+          <p class="filter-title">Amenities</p>
+          <label class="check"><input type="checkbox" value="Wi-Fi" class="amenity-filter"> Wi-Fi</label>
+          <label class="check"><input type="checkbox" value="Pool" class="amenity-filter"> Swimming Pool</label>
+          <label class="check"><input type="checkbox" value="Breakfast" class="amenity-filter"> Breakfast</label>
+          <label class="check"><input type="checkbox" value="Parking" class="amenity-filter"> Parking</label>
+
+          <button class="clear-btn" id="clearFilters">Clear Filters</button>
+        </aside>
+
+        <div id="hotelGrid" class="hotel-grid"></div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="features-section">
+      <div class="section-heading centered">
+        <p class="eyebrow">WHY STAYEASE</p>
+        <h2>Everything you need to book</h2>
+      </div>
+
+      <div class="features-grid">
+        <article class="feature-card">
+          <div class="feature-icon">⌕</div>
+          <h3>Easy Search</h3>
+          <p>Search by destination, dates and number of guests.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">◈</div>
+          <h3>Smart Filters</h3>
+          <p>Filter hotels by price, ratings and amenities.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">▣</div>
+          <h3>Simple Booking</h3>
+          <p>Select a room, enter guest details and confirm your stay.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">✓</div>
+          <h3>Booking Confirmation</h3>
+          <p>Receive an instant booking ID after confirmation.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ADMIN -->
+    <section id="admin" class="admin-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">HOTEL MANAGEMENT</p>
+          <h2>Admin Dashboard</h2>
+        </div>
+        <span class="admin-badge">FRONTEND DEMO</span>
+      </div>
+
+      <div class="admin-grid">
+        <div class="stat-card">
+          <span>Total Bookings</span>
+          <strong id="bookingStat">128</strong>
+          <small>+12 this week</small>
+        </div>
+        <div class="stat-card">
+          <span>Available Rooms</span>
+          <strong>46</strong>
+          <small>Across 6 hotels</small>
+        </div>
+        <div class="stat-card">
+          <span>Customer Reviews</span>
+          <strong>342</strong>
+          <small>Average 4.6 / 5</small>
+        </div>
+      </div>
+
+      <div class="admin-table-wrap">
+        <h3>Recent Bookings</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Booking ID</th>
+              <th>Customer</th>
+              <th>Hotel</th>
+              <th>Room</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="bookingTable">
+            <tr><td>#SE1028</td><td>Rahul Kumar</td><td>Skyline Grand</td><td>Deluxe</td><td><span class="status confirmed">Confirmed</span></td></tr>
+            <tr><td>#SE1027</td><td>Ananya Rao</td><td>Ocean Pearl</td><td>Suite</td><td><span class="status confirmed">Confirmed</span></td></tr>
+            <tr><td>#SE1026</td><td>Arjun Singh</td><td>Royal Orchid</td><td>Premium</td><td><span class="status pending">Pending</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- BOOKING MODAL -->
+  <div class="modal" id="bookingModal">
+    <div class="modal-card">
+      <button class="close" onclick="closeModal('bookingModal')">×</button>
+      <p class="eyebrow">RESERVE YOUR ROOM</p>
+      <h2 id="modalHotel">Hotel</h2>
+      <p id="modalRoom" class="muted">Room</p>
+
+      <form id="bookingForm">
+        <div class="two-col">
+          <div>
+            <label>Full Name</label>
+            <input id="guestName" required placeholder="Enter your name">
+          </div>
+          <div>
+            <label>Email</label>
+            <input id="guestEmail" type="email" required placeholder="you@example.com">
+          </div>
+        </div>
+        <div class="two-col">
+          <div>
+            <label>Check-in</label>
+            <input id="modalCheckIn" type="date" required>
+          </div>
+          <div>
+            <label>Check-out</label>
+            <input id="modalCheckOut" type="date" required>
+          </div>
+        </div>
+        <label>Payment Method</label>
+        <select id="paymentMethod">
+          <option>Credit / Debit Card</option>
+          <option>UPI</option>
+          <option>Net Banking</option>
+        </select>
+        <div class="payment-note">Demo only: no real payment is processed.</div>
+        <button class="primary-btn" type="submit">Confirm Booking</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal" id="loginModal">
+    <div class="modal-card small">
+      <button class="close" onclick="closeModal('loginModal')">×</button>
+      <p class="eyebrow">ACCOUNT</p>
+      <h2>Welcome back</h2>
+      <form id="loginForm">
+        <label>Email</label>
+        <input type="email" required placeholder="Enter email">
+        <label>Password</label>
+        <input type="password" required placeholder="Enter password">
+        <button class="primary-btn" type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SUCCESS TOAST -->
+  <div id="toast" class="toast"></div>
+
+  <footer>
+    <div class="logo">Stay<span>Ease</span></div>
+    <p>A simple, responsive hotel booking frontend.</p>
+    <p class="copyright">© 2026 StayEase Demo</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
